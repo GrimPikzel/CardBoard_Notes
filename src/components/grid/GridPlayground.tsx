@@ -415,18 +415,42 @@ const handleMiddleClick = useCallback((e: React.MouseEvent) => {
     return () => window.removeEventListener('paste', handlePaste);
   }, [createImagePanel]);
 
+
+const effectiveConfig = useMemo(() => {
+  const panelCount = floatingPanels.filter(p => !p.isExiting).length;
+
+  // Start dialing things down when there are lots of cards
+  if (panelCount > 25) {
+    return {
+      ...config,
+      gridScale: Math.max(80, (config.gridScale || 40) * 1.5),
+      gridLineOpacity: config.gridLineOpacity * 0.7,
+      dotOpacity: config.dotOpacity * 0.7,
+    };
+  }
+
+  return config;
+}, [config, floatingPanels]);
+
+
   return (
-    <div
-      style={{ minHeight: '100vh', color: 'var(--gp-text)', position: 'relative', backgroundColor: config.backgroundColor }}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-		onMouseDown={handleMiddleClick}
-		onAuxClick={handleMiddleClick}
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-    >
+			<div
+			style={{ minHeight: '100vh', color: 'var(--gp-text)', position: 'relative', backgroundColor: config.backgroundColor }}
+			onMouseDown={(e) => {
+			if (e.button === 1) {
+			// Middle mouse: spawn panel
+			handleMiddleClick(e); }
+			else {
+			// Left (and others): slicer / normal behavior
+			handleMouseDown(e); } }}
+			onMouseUp={handleMouseUp}
+			onMouseMove={handleMouseMove}
+			onMouseLeave={handleMouseLeave}
+			// You can drop this now, since we handle middle in onMouseDown:
+			// onAuxClick={handleMiddleClick}
+			onDrop={handleDrop}
+			onDragOver={handleDragOver}
+			>
       {/* ░░ Visual Overlays ░░ */}
 	{/* <NoiseOverlay /> */}  
       <EffectsOverlay type={config.overlayType} opacity={config.overlayOpacity} /> 
@@ -464,8 +488,8 @@ const handleMiddleClick = useCallback((e: React.MouseEvent) => {
 
       {/* ░░ Dot Grid Canvas ░░ */}
       <DotGridCanvas
-        key={`${canvasResetKey}-${config.gridScale || 40}`}
-        config={config}
+        key={`${canvasResetKey}-${effectiveConfig.gridScale || 40}`}
+        config={effectiveConfig}
         panelX={panelPos.x} panelY={panelPos.y} panelWidth={panelSize.width} panelHeight={panelSize.height}
         pulses={pulses} mousePos={mousePos}
         panels={floatingPanels.filter(p => !p.isExiting)}

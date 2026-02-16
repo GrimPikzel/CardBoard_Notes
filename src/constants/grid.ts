@@ -60,10 +60,10 @@ export const DEFAULT_CONFIG: PhysicsConfig = {
   movementMode: 'default',
 
   // Physics Toggles
-  particlesEnabled: true,
-  rippleEnabled: true,
+  particlesEnabled: false,
+  rippleEnabled: false,
   gridEnabled: true,
-  gridScale: 40,
+  gridScale: 80,
 
   // Panel Dimensions
   panelWidth: 280,

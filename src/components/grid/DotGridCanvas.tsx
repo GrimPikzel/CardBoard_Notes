@@ -62,10 +62,11 @@ export default function DotGridCanvas({
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    const gridSize = configRef.current.gridScale || 40;
-    const maxDist = 400;
-    const pushStrength = 25;
+	
+  // ░░ Grid Shit ░░
+	const gridSize = configRef.current.gridScale || 40;
+	const maxDist = 200;
+	const pushStrength = 22;
     const springStiffness = 0.08;
     const damping = 0.75;
 
@@ -495,8 +496,8 @@ export default function DotGridCanvas({
         dot.targetSize = 0.8 + ripple * 2;
         dot.size += (dot.targetSize - dot.size) * 0.15;
         // ░░ Performance: only draw dots within render distance ░░
-        if (dist < 500) {
-          const bRadius = 110;
+        if (dist < 320) {       // was 500
+          const bRadius = 90 ;     // was 110
           const bFalloff = Math.pow(Math.min(dist / bRadius, 1), 2);
           const opacity = (0.12 + (1 - bFalloff) * 0.8) * dotOp;
           ctx.beginPath();
@@ -611,8 +612,16 @@ export default function DotGridCanvas({
         if (from && to) {
           const fromH = from.isMinimized ? 40 : from.height;
           const toH = to.isMinimized ? 40 : to.height;
-          drawGridPath(from.x + from.width / 2, from.y + fromH / 2, to.x + to.width / 2, to.y + toH / 2, configRef.current.connectionColor || '#3B82F6', 2, 0.7, true);
-        }
+			drawGridPath(
+			  from.x + from.width / 2,
+			  from.y + fromH / 2,
+			  to.x + to.width / 2,
+			  to.y + toH / 2,
+			  configRef.current.connectionColor || '#ec1450',
+			  2,
+			  0.7,
+			  false  // no sampled “energy” pulses, just a nice static curved line
+			);        }
       }
 
       // Cut connection retraction
