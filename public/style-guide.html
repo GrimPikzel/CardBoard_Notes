@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Grid Playground — Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   STYLE GUIDE — SELF-CONTAINED CSS
+   Mirrors the --gp-* variable system from the app
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ░░ DEFAULT THEME ░░ */
+:root,
+[data-theme="default"] {
+  --gp-bg: #171717;
+  --gp-text: #e5e5e5;
+  --gp-text-muted: #a3a3a3;
+  --gp-text-dim: #525252;
+  --gp-accent: #3b82f6;
+  --gp-accent-muted: rgba(59, 130, 246, 0.3);
+  --gp-accent-border: rgba(59, 130, 246, 0.5);
+  --gp-destructive: #ef4444;
+  --gp-panel-bg: rgba(30, 30, 30, 1);
+  --gp-panel-bg-alpha: rgba(30, 30, 30, 0.9);
+  --gp-surface: rgba(38, 38, 38, 1);
+  --gp-surface-hover: rgba(45, 45, 45, 0.95);
+  --gp-surface-deep: rgba(0, 0, 0, 0.2);
+  --gp-border: rgba(255, 255, 255, 0.1);
+  --gp-border-hover: rgba(255, 255, 255, 0.2);
+  --gp-border-strong: rgba(255, 255, 255, 0.3);
+  --gp-border-panel: rgba(255, 255, 255, 0.1);
+  --gp-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --gp-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --gp-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
+  --gp-btn-bg: rgba(30, 30, 30, 0.9);
+  --gp-btn-bg-hover: rgba(40, 40, 40, 0.95);
+  --gp-btn-text: #a3a3a3;
+  --gp-btn-text-active: #ffffff;
+  --gp-btn-border: rgba(255, 255, 255, 0.1);
+  --gp-settings-bg: rgba(23, 23, 23, 0.95);
+  --gp-settings-border: rgba(255, 255, 255, 0.1);
+  --gp-header-bg: rgba(255, 255, 255, 0.02);
+  --gp-header-border: rgba(255, 255, 255, 0.05);
+  --gp-header-text: #e5e5e5;
+  --gp-input-bg: rgba(0, 0, 0, 0.3);
+  --gp-input-border: rgba(255, 255, 255, 0.1);
+  --gp-input-text: #e5e5e5;
+  --gp-connection-color: #3b82f6;
+  --gp-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --gp-font-mono: 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  --gp-radius-sm: 4px;
+  --gp-radius-md: 8px;
+  --gp-radius-lg: 12px;
+  --gp-selector-bg: #262626;
+  --gp-selector-border: #333;
+  --gp-selector-border-hover: #525252;
+  --gp-selector-text: #a3a3a3;
+  --gp-selector-text-hover: #fff;
+  --gp-lock-color: #f59e0b;
+}
+
+/* ░░ DOS / HACKER THEME ░░ */
+[data-theme="dos"] {
+  --gp-bg: #000000;
+  --gp-text: #00ff41;
+  --gp-text-muted: #00cc33;
+  --gp-text-dim: #006622;
+  --gp-accent: #00ff41;
+  --gp-accent-muted: rgba(0, 255, 65, 0.2);
+  --gp-accent-border: rgba(0, 255, 65, 0.5);
+  --gp-destructive: #ff0040;
+  --gp-panel-bg: rgba(0, 10, 2, 1);
+  --gp-panel-bg-alpha: rgba(0, 10, 2, 0.95);
+  --gp-surface: rgba(0, 20, 5, 1);
+  --gp-surface-hover: rgba(0, 30, 8, 0.95);
+  --gp-surface-deep: rgba(0, 0, 0, 0.5);
+  --gp-border: rgba(0, 255, 65, 0.15);
+  --gp-border-hover: rgba(0, 255, 65, 0.3);
+  --gp-border-strong: rgba(0, 255, 65, 0.5);
+  --gp-border-panel: rgba(0, 255, 65, 0.2);
+  --gp-shadow-sm: 0 0 8px rgba(0, 255, 65, 0.1);
+  --gp-shadow-md: 0 0 20px rgba(0, 255, 65, 0.15);
+  --gp-shadow-lg: 0 0 40px rgba(0, 255, 65, 0.2);
+  --gp-btn-bg: rgba(0, 10, 2, 0.95);
+  --gp-btn-bg-hover: rgba(0, 30, 8, 0.95);
+  --gp-btn-text: #00cc33;
+  --gp-btn-text-active: #00ff41;
+  --gp-btn-border: rgba(0, 255, 65, 0.2);
+  --gp-settings-bg: rgba(0, 5, 1, 0.97);
+  --gp-settings-border: rgba(0, 255, 65, 0.2);
+  --gp-header-bg: rgba(0, 255, 65, 0.03);
+  --gp-header-border: rgba(0, 255, 65, 0.1);
+  --gp-header-text: #00ff41;
+  --gp-input-bg: rgba(0, 0, 0, 0.5);
+  --gp-input-border: rgba(0, 255, 65, 0.2);
+  --gp-input-text: #00ff41;
+  --gp-connection-color: #00ff41;
+  --gp-font-family: 'Courier New', 'Lucida Console', monospace;
+  --gp-font-mono: 'Courier New', 'Lucida Console', monospace;
+  --gp-radius-sm: 0px;
+  --gp-radius-md: 2px;
+  --gp-radius-lg: 2px;
+  --gp-selector-bg: rgba(0, 20, 5, 1);
+  --gp-selector-border: rgba(0, 255, 65, 0.2);
+  --gp-selector-border-hover: rgba(0, 255, 65, 0.5);
+  --gp-selector-text: #00cc33;
+  --gp-selector-text-hover: #00ff41;
+  --gp-lock-color: #00ff41;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--gp-bg);
+  color: var(--gp-text);
+  font-family: var(--gp-font-family);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ░░ Layout ░░ */
+.sg-container { max-width: 1400px; margin: 0 auto; padding: 40px 32px 80px; }
+.sg-header { border-bottom: 1px solid var(--gp-border); padding-bottom: 32px; margin-bottom: 48px; }
+.sg-section { margin-bottom: 56px; }
+.sg-section-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gp-text-dim); margin-bottom: 20px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--gp-border);
+}
+.sg-grid { display: grid; gap: 16px; }
+.sg-grid-2 { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.sg-grid-3 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.sg-grid-4 { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.sg-grid-5 { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+/* ░░ Bento Window ░░ */
+.sg-window {
+  background: var(--gp-panel-bg);
+  border: 1px solid var(--gp-border-panel);
+  border-radius: var(--gp-radius-lg);
+  box-shadow: var(--gp-shadow-md);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sg-window-header {
+  background: var(--gp-header-bg);
+  border-bottom: 1px solid var(--gp-header-border);
+  padding: 10px 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--gp-font-mono);
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--gp-header-text);
+}
+.sg-window-header .tag {
+  font-size: 9px; color: var(--gp-text-dim); opacity: 0.6;
+}
+.sg-window-content { padding: 20px; flex: 1; }
+.sg-window-footer {
+  border-top: 1px solid var(--gp-border);
+  padding: 8px 14px;
+  font-family: var(--gp-font-mono);
+  font-size: 9px; color: var(--gp-text-dim);
+  display: flex; justify-content: space-between;
+}
+
+/* ░░ Theme Switcher ░░ */
+.sg-theme-switcher { display: flex; gap: 8px; }
+.sg-theme-btn {
+  padding: 6px 16px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--gp-border); border-radius: var(--gp-radius-md);
+  background: var(--gp-surface); color: var(--gp-text-muted);
+  cursor: pointer; transition: all 0.2s;
+  font-family: var(--gp-font-mono);
+}
+.sg-theme-btn.active, .sg-theme-btn:hover {
+  background: var(--gp-accent-muted); border-color: var(--gp-accent-border);
+  color: var(--gp-btn-text-active);
+}
+
+/* ░░ Utility ░░ */
+.sg-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gp-text-dim); margin-bottom: 4px; }
+.sg-mono { font-family: var(--gp-font-mono); }
+.sg-flex { display: flex; }
+.sg-gap-8 { gap: 8px; }
+.sg-gap-12 { gap: 12px; }
+.sg-gap-16 { gap: 16px; }
+.sg-wrap { flex-wrap: wrap; }
+.sg-col { flex-direction: column; }
+.sg-center { align-items: center; }
+.sg-between { justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="sg-container">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════ -->
+  <header class="sg-header">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+      <div>
+        <p class="sg-mono" style="font-size:10px; font-weight:700; margin-bottom:4px; color:var(--gp-text-dim);">GRID_PLAYGROUND_V1.0</p>
+        <h1 style="font-size:48px; font-weight:900; line-height:1; letter-spacing:-0.03em;">Style Guide</h1>
+        <p style="font-size:13px; color:var(--gp-text-muted); margin-top:8px;">
+          Complete visual reference for the <span class="sg-mono" style="color:var(--gp-accent);">--gp-*</span> CSS variable system.
+        </p>
+      </div>
+      <div>
+        <p class="sg-label" style="margin-bottom:8px;">Active Theme</p>
+        <div class="sg-theme-switcher">
+          <button class="sg-theme-btn active" onclick="setTheme('default', this)">Default</button>
+          <button class="sg-theme-btn" onclick="setTheme('dos', this)">DOS / Hacker</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1: COLOR PALETTE
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Color Palette ░░</h2>
+    <div class="sg-grid sg-grid-5">
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-bg); border:1px solid var(--gp-border); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Background</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-bg</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-accent); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Accent</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-accent</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-destructive); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Destructive</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-destructive</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-panel-bg); border:1px solid var(--gp-border); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Panel BG</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-panel-bg</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-surface); border:1px solid var(--gp-border); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Surface</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-surface</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-connection-color); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Connection</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-connection-color</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:100%; height:60px; background:var(--gp-lock-color); border-radius:var(--gp-radius-sm); margin-bottom:8px;"></div>
+          <p class="sg-mono" style="font-size:10px; font-weight:700;">Lock</p>
+          <p class="sg-mono" style="font-size:9px; color:var(--gp-text-dim);">--gp-lock-color</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2: TYPOGRAPHY
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Typography ░░</h2>
+    <div class="sg-grid sg-grid-2">
+      <div class="sg-window" style="grid-column: span 2;">
+        <div class="sg-window-header">
+          <span>Typography & Fonts</span>
+          <span class="tag">WIN_TYP</span>
+        </div>
+        <div class="sg-window-content" style="display:flex; flex-direction:column; gap:24px;">
+          <div>
+            <p class="sg-label">Display / H1 — var(--gp-font-family)</p>
+            <h3 style="font-size:56px; font-weight:900; line-height:1; letter-spacing:-0.03em;">Node Editor</h3>
+          </div>
+          <div>
+            <p class="sg-label">Heading / H2</p>
+            <h4 style="font-size:28px; font-weight:700; letter-spacing:-0.02em;">Panel Connections</h4>
+          </div>
+          <div>
+            <p class="sg-label">Body Text — var(--gp-text)</p>
+            <p style="font-size:14px; color:var(--gp-text); max-width:600px;">
+              Double-click anywhere to spawn nodes. Drag from the corner square to connect them. Slice through lines to cut connections.
+            </p>
+          </div>
+          <div>
+            <p class="sg-label">Muted Text — var(--gp-text-muted)</p>
+            <p style="font-size:13px; color:var(--gp-text-muted);">Settings and configuration are stored in localStorage.</p>
+          </div>
+          <div>
+            <p class="sg-label">Dim Text — var(--gp-text-dim)</p>
+            <p style="font-size:12px; color:var(--gp-text-dim);">Secondary labels and hints</p>
+          </div>
+          <div>
+            <p class="sg-label">Monospace — var(--gp-font-mono)</p>
+            <p class="sg-mono" style="font-size:12px; color:var(--gp-text-muted);">0xAF1 → panelIdCounter.current++</p>
+          </div>
+          <div style="display:flex; gap:24px; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--gp-border);">
+            <div>
+              <p class="sg-label">Link Default</p>
+              <a href="#" style="font-size:12px; font-weight:600; color:var(--gp-text); text-decoration:none; border-bottom:1px solid var(--gp-text);">NAV_LINK</a>
+            </div>
+            <div>
+              <p class="sg-label">Link Hover</p>
+              <a href="#" style="font-size:12px; font-weight:600; color:var(--gp-accent); text-decoration:none; border-bottom:1px solid var(--gp-accent);">NAV_LINK</a>
+            </div>
+          </div>
+        </div>
+        <div class="sg-window-footer">
+          <span>OBJECTS: 7</span>
+          <span>--gp-font-family / --gp-font-mono</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3: SURFACES & BORDERS
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Surfaces, Borders & Shadows ░░</h2>
+    <div class="sg-grid sg-grid-3">
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Border Default</span><span class="tag">--gp-border</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; border:1px solid var(--gp-border); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">1px solid</div>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Border Hover</span><span class="tag">--gp-border-hover</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; border:1px solid var(--gp-border-hover); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">Hover state</div>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Border Strong</span><span class="tag">--gp-border-strong</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; border:1px solid var(--gp-border-strong); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">Strong</div>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Shadow SM</span><span class="tag">--gp-shadow-sm</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; background:var(--gp-surface); box-shadow:var(--gp-shadow-sm); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">Small</div>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Shadow MD</span><span class="tag">--gp-shadow-md</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; background:var(--gp-surface); box-shadow:var(--gp-shadow-md); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">Medium</div>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Shadow LG</span><span class="tag">--gp-shadow-lg</span></div>
+        <div class="sg-window-content">
+          <div style="height:60px; background:var(--gp-surface); box-shadow:var(--gp-shadow-lg); border-radius:var(--gp-radius-md); display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--gp-text-dim);">Large</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4: BORDER RADIUS
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Border Radius ░░</h2>
+    <div class="sg-grid sg-grid-3">
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:80px; height:80px; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-sm); margin:0 auto 8px;"></div>
+          <p class="sg-mono" style="font-size:10px;">--gp-radius-sm</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:80px; height:80px; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-md); margin:0 auto 8px;"></div>
+          <p class="sg-mono" style="font-size:10px;">--gp-radius-md</p>
+        </div>
+      </div>
+      <div class="sg-window">
+        <div class="sg-window-content" style="text-align:center;">
+          <div style="width:80px; height:80px; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-lg); margin:0 auto 8px;"></div>
+          <p class="sg-mono" style="font-size:10px;">--gp-radius-lg</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 5: BUTTONS & INTERACTIVE ELEMENTS
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Buttons & Interactive Elements ░░</h2>
+    <div class="sg-grid sg-grid-2">
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Button States</span><span class="tag">WIN_BTN</span></div>
+        <div class="sg-window-content" style="display:flex; flex-direction:column; gap:10px;">
+          <button style="width:100%; padding:8px 16px; font-size:11px; font-weight:600; background:var(--gp-btn-bg); border:1px solid var(--gp-btn-border); border-radius:var(--gp-radius-md); color:var(--gp-btn-text); cursor:pointer; font-family:var(--gp-font-mono); text-transform:uppercase;">Default</button>
+          <button style="width:100%; padding:8px 16px; font-size:11px; font-weight:600; background:var(--gp-btn-bg-hover); border:1px solid var(--gp-border-hover); border-radius:var(--gp-radius-md); color:var(--gp-btn-text-active); cursor:pointer; font-family:var(--gp-font-mono); text-transform:uppercase;">Hover</button>
+          <button style="width:100%; padding:8px 16px; font-size:11px; font-weight:600; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-md); color:var(--gp-btn-text-active); cursor:pointer; font-family:var(--gp-font-mono); text-transform:uppercase;">Active / Accent</button>
+          <button style="width:100%; padding:8px 16px; font-size:11px; font-weight:600; background:var(--gp-surface-deep); border:1px solid var(--gp-border); border-radius:var(--gp-radius-md); color:var(--gp-text-dim); cursor:not-allowed; font-family:var(--gp-font-mono); text-transform:uppercase; opacity:0.5;" disabled>Disabled</button>
+          <button style="width:100%; padding:8px 16px; font-size:11px; font-weight:600; background:rgba(239,68,68,0.1); border:1px solid var(--gp-destructive); border-radius:var(--gp-radius-md); color:var(--gp-destructive); cursor:pointer; font-family:var(--gp-font-mono); text-transform:uppercase;">Destructive</button>
+        </div>
+        <div class="sg-window-footer"><span>OBJECTS: 5</span><span>--gp-btn-*</span></div>
+      </div>
+
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Inputs & Controls</span><span class="tag">WIN_INP</span></div>
+        <div class="sg-window-content" style="display:flex; flex-direction:column; gap:12px;">
+          <div>
+            <p class="sg-label">Text Input</p>
+            <input type="text" value="Panel Name" style="width:100%; padding:6px 10px; font-size:12px; font-family:var(--gp-font-mono); background:var(--gp-input-bg); border:1px solid var(--gp-input-border); border-radius:var(--gp-radius-md); color:var(--gp-input-text); outline:none;" />
+          </div>
+          <div>
+            <p class="sg-label">Select / Dropdown</p>
+            <select style="width:100%; padding:6px 10px; font-size:12px; background:var(--gp-input-bg); border:1px solid var(--gp-input-border); border-radius:var(--gp-radius-md); color:var(--gp-input-text); outline:none; cursor:pointer;">
+              <option style="background:var(--gp-bg);">Default Theme</option>
+              <option style="background:var(--gp-bg);">DOS / Hacker</option>
+            </select>
+          </div>
+          <div>
+            <p class="sg-label">Range Slider</p>
+            <input type="range" min="0" max="100" value="65" style="width:100%; accent-color:var(--gp-accent);" />
+          </div>
+          <div>
+            <p class="sg-label">Color Input</p>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <input type="color" value="#3b82f6" style="width:28px; height:28px; border:1px solid var(--gp-border-hover); border-radius:var(--gp-radius-sm); cursor:pointer; background:transparent; padding:0;" />
+              <input type="text" value="#3b82f6" style="flex:1; padding:4px 8px; font-size:11px; font-family:var(--gp-font-mono); background:var(--gp-input-bg); border:1px solid var(--gp-input-border); border-radius:var(--gp-radius-md); color:var(--gp-input-text); outline:none;" />
+            </div>
+          </div>
+        </div>
+        <div class="sg-window-footer"><span>OBJECTS: 4</span><span>--gp-input-*</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 6: PANEL COMPONENTS
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Panel Components ░░</h2>
+    <div class="sg-grid sg-grid-3">
+      <!-- Floating Panel -->
+      <div class="sg-window">
+        <div class="sg-window-header">
+          <span style="display:flex; align-items:center; gap:6px;">
+            <span style="width:8px; height:8px; background:var(--gp-accent); border-radius:2px;"></span>
+            Floating Panel
+          </span>
+          <span class="tag">—  ✕</span>
+        </div>
+        <div class="sg-window-content" style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span style="padding:4px 10px; font-size:10px; background:var(--gp-selector-bg); border:1px solid var(--gp-selector-border); border-radius:var(--gp-radius-sm); color:var(--gp-selector-text); cursor:pointer;">📝 Note</span>
+            <span style="padding:4px 10px; font-size:10px; background:var(--gp-selector-bg); border:1px solid var(--gp-selector-border); border-radius:var(--gp-radius-sm); color:var(--gp-selector-text); cursor:pointer;">✅ Todo</span>
+            <span style="padding:4px 10px; font-size:10px; background:var(--gp-selector-bg); border:1px solid var(--gp-selector-border); border-radius:var(--gp-radius-sm); color:var(--gp-selector-text); cursor:pointer;">🖼 Image</span>
+          </div>
+          <p style="font-size:11px; color:var(--gp-text-dim);">Content selector buttons use --gp-selector-* tokens</p>
+        </div>
+        <div class="sg-window-footer"><span>RESIZABLE</span><span>DRAGGABLE</span></div>
+      </div>
+
+      <!-- Settings Panel -->
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Settings Panel</span><span class="tag">WIN_SET</span></div>
+        <div class="sg-window-content" style="background:var(--gp-settings-bg); border:1px solid var(--gp-settings-border); border-radius:var(--gp-radius-md); padding:12px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:var(--gp-text-muted);">Physics Mode</span>
+            <div style="display:flex; gap:4px;">
+              <span style="padding:4px 8px; font-size:10px; background:var(--gp-surface); border:1px solid var(--gp-border); border-radius:var(--gp-radius-sm); color:var(--gp-text-dim);">Sticky</span>
+              <span style="padding:4px 8px; font-size:10px; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-sm); color:var(--gp-btn-text-active);">Default</span>
+              <span style="padding:4px 8px; font-size:10px; background:var(--gp-surface); border:1px solid var(--gp-border); border-radius:var(--gp-radius-sm); color:var(--gp-text-dim);">Bouncy</span>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:var(--gp-text-muted);">Enable Sound</span>
+            <div style="width:36px; height:20px; background:var(--gp-accent); border-radius:10px; position:relative;">
+              <div style="width:16px; height:16px; background:white; border-radius:50%; position:absolute; top:2px; right:2px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sg-window-footer"><span>--gp-settings-*</span><span>ACCORDION</span></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="sg-window">
+        <div class="sg-window-header"><span>Toolbar</span><span class="tag">WIN_TOOL</span></div>
+        <div class="sg-window-content" style="display:flex; justify-content:center;">
+          <div style="display:flex; gap:4px; padding:8px; background:var(--gp-btn-bg); border:1px solid var(--gp-btn-border); border-radius:var(--gp-radius-lg);">
+            <div style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-md); color:var(--gp-btn-text-active); font-size:14px;">🎨</div>
+            <div style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid transparent; border-radius:var(--gp-radius-md); color:var(--gp-btn-text); font-size:14px;">🖼</div>
+            <div style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid transparent; border-radius:var(--gp-radius-md); color:var(--gp-btn-text); font-size:14px;">📝</div>
+          </div>
+        </div>
+        <div class="sg-window-footer"><span>DRAGGABLE</span><span>SINGLETON</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 7: ALERTS & FEEDBACK
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Alerts & Feedback ░░</h2>
+    <div class="sg-grid sg-grid-2">
+      <div style="background:var(--gp-accent-muted); border:1px solid var(--gp-accent-border); border-radius:var(--gp-radius-md); padding:12px 16px; display:flex; gap:12px; align-items:center;">
+        <span style="font-size:16px;">ℹ️</span>
+        <div>
+          <p style="font-size:12px; font-weight:600;">Info Message</p>
+          <p style="font-size:11px; color:var(--gp-text-muted);">Using accent color tokens for informational alerts.</p>
+        </div>
+      </div>
+      <div style="background:rgba(239,68,68,0.1); border:1px solid var(--gp-destructive); border-radius:var(--gp-radius-md); padding:12px 16px; display:flex; gap:12px; align-items:center;">
+        <span style="font-size:16px;">⚠️</span>
+        <div>
+          <p style="font-size:12px; font-weight:600; color:var(--gp-destructive);">Destructive Action</p>
+          <p style="font-size:11px; color:var(--gp-text-muted);">Clear all panels? This cannot be undone.</p>
+        </div>
+      </div>
+      <div style="background:rgba(245,158,11,0.1); border:1px solid var(--gp-lock-color); border-radius:var(--gp-radius-md); padding:12px 16px; display:flex; gap:12px; align-items:center;">
+        <span style="font-size:16px;">🔒</span>
+        <div>
+          <p style="font-size:12px; font-weight:600; color:var(--gp-lock-color);">Panel Locked</p>
+          <p style="font-size:11px; color:var(--gp-text-muted);">This panel is locked and cannot be moved.</p>
+        </div>
+      </div>
+      <div style="background:var(--gp-surface); border:1px solid var(--gp-border); border-radius:var(--gp-radius-md); padding:12px 16px; display:flex; gap:12px; align-items:center;">
+        <span style="font-size:16px;">✅</span>
+        <div>
+          <p style="font-size:12px; font-weight:600;">Success</p>
+          <p style="font-size:11px; color:var(--gp-text-muted);">Settings saved to localStorage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 8: CSS VARIABLE REFERENCE
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="sg-section">
+    <h2 class="sg-section-title">░░ Complete CSS Variable Reference ░░</h2>
+    <div class="sg-window">
+      <div class="sg-window-header"><span>All --gp-* Variables</span><span class="tag">REFERENCE</span></div>
+      <div class="sg-window-content" style="font-family:var(--gp-font-mono); font-size:11px; line-height:2; color:var(--gp-text-muted);">
+        <div style="columns:2; column-gap:32px;">
+          <p><strong style="color:var(--gp-text);">Canvas / Page</strong></p>
+          <p>--gp-bg</p>
+          <p>--gp-text</p>
+          <p>--gp-text-muted</p>
+          <p>--gp-text-dim</p>
+          <p>--gp-accent</p>
+          <p>--gp-accent-muted</p>
+          <p>--gp-accent-border</p>
+          <p>--gp-destructive</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Surfaces</strong></p>
+          <p>--gp-panel-bg</p>
+          <p>--gp-panel-bg-alpha</p>
+          <p>--gp-surface</p>
+          <p>--gp-surface-hover</p>
+          <p>--gp-surface-deep</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Borders</strong></p>
+          <p>--gp-border</p>
+          <p>--gp-border-hover</p>
+          <p>--gp-border-strong</p>
+          <p>--gp-border-panel</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Shadows</strong></p>
+          <p>--gp-shadow-sm</p>
+          <p>--gp-shadow-md</p>
+          <p>--gp-shadow-lg</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Buttons</strong></p>
+          <p>--gp-btn-bg</p>
+          <p>--gp-btn-bg-hover</p>
+          <p>--gp-btn-text</p>
+          <p>--gp-btn-text-active</p>
+          <p>--gp-btn-border</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Settings</strong></p>
+          <p>--gp-settings-bg</p>
+          <p>--gp-settings-border</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Panel Header</strong></p>
+          <p>--gp-header-bg</p>
+          <p>--gp-header-border</p>
+          <p>--gp-header-text</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Inputs</strong></p>
+          <p>--gp-input-bg</p>
+          <p>--gp-input-border</p>
+          <p>--gp-input-text</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Connection</strong></p>
+          <p>--gp-connection-color</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Typography</strong></p>
+          <p>--gp-font-family</p>
+          <p>--gp-font-mono</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Radius</strong></p>
+          <p>--gp-radius-sm</p>
+          <p>--gp-radius-md</p>
+          <p>--gp-radius-lg</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Selectors</strong></p>
+          <p>--gp-selector-bg</p>
+          <p>--gp-selector-border</p>
+          <p>--gp-selector-border-hover</p>
+          <p>--gp-selector-text</p>
+          <p>--gp-selector-text-hover</p>
+          <br/>
+          <p><strong style="color:var(--gp-text);">Lock</strong></p>
+          <p>--gp-lock-color</p>
+        </div>
+      </div>
+      <div class="sg-window-footer"><span>TOTAL: 40+ variables</span><span>THEMEABLE</span></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer style="border-top:1px solid var(--gp-border); padding-top:24px; display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:16px;">
+    <div>
+      <p style="font-size:80px; font-weight:900; line-height:0.8; letter-spacing:-0.05em; opacity:0.04; user-select:none;">GP</p>
+    </div>
+    <div class="sg-mono" style="font-size:9px; text-align:right; color:var(--gp-text-dim);">
+      <p>GRID_PLAYGROUND_STYLE_GUIDE</p>
+      <p>Theme System: --gp-* CSS Custom Properties</p>
+      <p>Themes: Default, DOS/Hacker</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+function setTheme(theme, btn) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('.sg-theme-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

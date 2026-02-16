@@ -1,0 +1,81 @@
+/* ============================================================================
+   GRID PLAYGROUND - Global Styles
+   ============================================================================ */
+
+/* Disable CSS zoom on the playground page */
+html.no-zoom {
+  zoom: 1 !important;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Hide scrollbars */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animated generating text with shimmer */
+@keyframes textShimmer {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes ellipsisFade {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.animate-generating {
+  animation: textShimmer 2s ease-in-out infinite;
+}
+
+.animate-ellipsis span {
+  display: inline-block;
+}
+
+.animate-ellipsis span:nth-child(1) {
+  animation: ellipsisFade 1.2s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-ellipsis span:nth-child(2) {
+  animation: ellipsisFade 1.2s ease-in-out infinite;
+  animation-delay: 0.15s;
+}
+
+.animate-ellipsis span:nth-child(3) {
+  animation: ellipsisFade 1.2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+/* Logo button skin */
+.btn-skin {
+  background: var(--gp-btn-bg, rgba(30, 30, 30, 0.9));
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-skin:hover {
+  background: var(--gp-btn-bg-hover, rgba(40, 40, 40, 0.95));
+  transform: scale(1.05);
+}
+
+.btn-skin:active {
+  transform: scale(0.97);
+}
+
+/* Todo item hover effect */
+.todo-item:hover button:last-child {
+  opacity: 1 !important;
+}
+
+/* Keyboard shortcuts - hide on mobile */
+@media (max-width: 768px) {
+  .keyboard-shortcuts {
+    display: none !important;
+  }
+}

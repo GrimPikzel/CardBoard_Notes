@@ -1,0 +1,160 @@
+/* ============================================================================
+   GRID PLAYGROUND - CSS THEMING SYSTEM
+   All visual aspects (colors, borders, shadows, backgrounds) are controlled
+   by CSS custom properties. Switch themes by changing the data-theme attribute.
+   ============================================================================ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   ░░ DEFAULT THEME ░░
+   Clean dark theme with subtle blue accents
+   ═══════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="default"] {
+  /* ░░ Canvas / Page ░░ */
+  --gp-bg: #171717;
+  --gp-text: #e5e5e5;
+  --gp-text-muted: #a3a3a3;
+  --gp-text-dim: #525252;
+  --gp-accent: #3b82f6;
+  --gp-accent-muted: rgba(59, 130, 246, 0.3);
+  --gp-accent-border: rgba(59, 130, 246, 0.5);
+  --gp-destructive: #ef4444;
+
+  /* ░░ Surfaces ░░ */
+  --gp-panel-bg: rgba(30, 30, 30, 1);
+  --gp-panel-bg-alpha: rgba(30, 30, 30, 0.9);
+  --gp-surface: rgba(38, 38, 38, 1);
+  --gp-surface-hover: rgba(45, 45, 45, 0.95);
+  --gp-surface-deep: rgba(0, 0, 0, 0.2);
+
+  /* ░░ Borders ░░ */
+  --gp-border: rgba(255, 255, 255, 0.1);
+  --gp-border-hover: rgba(255, 255, 255, 0.2);
+  --gp-border-strong: rgba(255, 255, 255, 0.3);
+  --gp-border-panel: rgba(255, 255, 255, 0.1);
+
+  /* ░░ Shadows ░░ */
+  --gp-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --gp-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --gp-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
+
+  /* ░░ Toolbar / Buttons ░░ */
+  --gp-btn-bg: rgba(30, 30, 30, 0.9);
+  --gp-btn-bg-hover: rgba(40, 40, 40, 0.95);
+  --gp-btn-text: #a3a3a3;
+  --gp-btn-text-active: #ffffff;
+  --gp-btn-border: rgba(255, 255, 255, 0.1);
+
+  /* ░░ Settings Panel ░░ */
+  --gp-settings-bg: rgba(23, 23, 23, 0.95);
+  --gp-settings-border: rgba(255, 255, 255, 0.1);
+
+  /* ░░ Panel Header ░░ */
+  --gp-header-bg: rgba(255, 255, 255, 0.02);
+  --gp-header-border: rgba(255, 255, 255, 0.05);
+  --gp-header-text: #e5e5e5;
+
+  /* ░░ Inputs / Controls ░░ */
+  --gp-input-bg: rgba(0, 0, 0, 0.3);
+  --gp-input-border: rgba(255, 255, 255, 0.1);
+  --gp-input-text: #e5e5e5;
+
+  /* ░░ Connection Lines ░░ */
+  --gp-connection-color: #3b82f6;
+
+  /* ░░ Typography ░░ */
+  --gp-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --gp-font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ░░ Border Radius ░░ */
+  --gp-radius-sm: 4px;
+  --gp-radius-md: 8px;
+  --gp-radius-lg: 12px;
+
+  /* ░░ Selector / Content Buttons ░░ */
+  --gp-selector-bg: #262626;
+  --gp-selector-border: #333;
+  --gp-selector-border-hover: #525252;
+  --gp-selector-text: #a3a3a3;
+  --gp-selector-text-hover: #fff;
+
+  /* ░░ Lock indicator ░░ */
+  --gp-lock-color: #f59e0b;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ░░ DOS / HACKER THEME ░░
+   Retro terminal look with phosphor green on black
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme="dos"] {
+  /* ░░ Canvas / Page ░░ */
+  --gp-bg: #000000;
+  --gp-text: #00ff41;
+  --gp-text-muted: #00cc33;
+  --gp-text-dim: #006622;
+  --gp-accent: #00ff41;
+  --gp-accent-muted: rgba(0, 255, 65, 0.2);
+  --gp-accent-border: rgba(0, 255, 65, 0.5);
+  --gp-destructive: #ff0040;
+
+  /* ░░ Surfaces ░░ */
+  --gp-panel-bg: rgba(0, 10, 2, 1);
+  --gp-panel-bg-alpha: rgba(0, 10, 2, 0.95);
+  --gp-surface: rgba(0, 20, 5, 1);
+  --gp-surface-hover: rgba(0, 30, 8, 0.95);
+  --gp-surface-deep: rgba(0, 0, 0, 0.5);
+
+  /* ░░ Borders ░░ */
+  --gp-border: rgba(0, 255, 65, 0.15);
+  --gp-border-hover: rgba(0, 255, 65, 0.3);
+  --gp-border-strong: rgba(0, 255, 65, 0.5);
+  --gp-border-panel: rgba(0, 255, 65, 0.2);
+
+  /* ░░ Shadows ░░ */
+  --gp-shadow-sm: 0 0 8px rgba(0, 255, 65, 0.1);
+  --gp-shadow-md: 0 0 20px rgba(0, 255, 65, 0.15);
+  --gp-shadow-lg: 0 0 40px rgba(0, 255, 65, 0.2);
+
+  /* ░░ Toolbar / Buttons ░░ */
+  --gp-btn-bg: rgba(0, 10, 2, 0.95);
+  --gp-btn-bg-hover: rgba(0, 30, 8, 0.95);
+  --gp-btn-text: #00cc33;
+  --gp-btn-text-active: #00ff41;
+  --gp-btn-border: rgba(0, 255, 65, 0.2);
+
+  /* ░░ Settings Panel ░░ */
+  --gp-settings-bg: rgba(0, 5, 1, 0.97);
+  --gp-settings-border: rgba(0, 255, 65, 0.2);
+
+  /* ░░ Panel Header ░░ */
+  --gp-header-bg: rgba(0, 255, 65, 0.03);
+  --gp-header-border: rgba(0, 255, 65, 0.1);
+  --gp-header-text: #00ff41;
+
+  /* ░░ Inputs / Controls ░░ */
+  --gp-input-bg: rgba(0, 0, 0, 0.5);
+  --gp-input-border: rgba(0, 255, 65, 0.2);
+  --gp-input-text: #00ff41;
+
+  /* ░░ Connection Lines ░░ */
+  --gp-connection-color: #00ff41;
+
+  /* ░░ Typography ░░ */
+  --gp-font-family: 'Courier New', 'Lucida Console', monospace;
+  --gp-font-mono: 'Courier New', 'Lucida Console', monospace;
+
+  /* ░░ Border Radius ░░ */
+  --gp-radius-sm: 0px;
+  --gp-radius-md: 2px;
+  --gp-radius-lg: 2px;
+
+  /* ░░ Selector / Content Buttons ░░ */
+  --gp-selector-bg: rgba(0, 20, 5, 1);
+  --gp-selector-border: rgba(0, 255, 65, 0.2);
+  --gp-selector-border-hover: rgba(0, 255, 65, 0.5);
+  --gp-selector-text: #00cc33;
+  --gp-selector-text-hover: #00ff41;
+
+  /* ░░ Lock indicator ░░ */
+  --gp-lock-color: #00ff41;
+}

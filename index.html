@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>Code Weaver</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <!-- TODO: Update og:title to match your application name -->
+    <meta property="og:title" content="Lovable App" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+	
+	    <style>
+      /* Electron titlebar - draggable but doesn't block content */
+      .titlebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        background: transparent;
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+        user-select: none;
+        z-index: 999999;
+        pointer-events: none; /* Don't block clicks */
+      }
+      
+      /* Make sure the app content doesn't start behind titlebar */
+      #root {
+        padding-top: 0px; /* No padding needed since titlebar is transparent */
+      }
+    </style>
+  </head>
+
+  <body>
+  
+    <div class="titlebar"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
