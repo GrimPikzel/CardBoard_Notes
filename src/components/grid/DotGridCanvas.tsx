@@ -722,11 +722,19 @@ export default function DotGridCanvas({
 
     animationRef.current = requestAnimationFrame(animate);
 
-    const handleResize = () => {
-      width = window.innerWidth; height = window.innerHeight;
-      canvas.width = width; canvas.height = height;
-      initDots();
-    };
+			const handleResize = () => {
+			const newW = window.innerWidth;
+			const newH = window.innerHeight;
+
+			// Ignore phantom resizes where size didn't actually change
+			if (newW === width && newH === height) return;
+
+			width = newW;
+			height = newH;
+			canvas.width = width;
+			canvas.height = height;
+			initDots();
+			};
     window.addEventListener('resize', handleResize);
 
     return () => {
