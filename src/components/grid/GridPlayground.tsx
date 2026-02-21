@@ -18,6 +18,7 @@ import SettingsPanel from '@/components/grid/SettingsPanel';
 import Toolbar, { TOOLS } from '@/components/grid/Toolbar';
 import DotPatternCanvas from '@/components/grid/DotPatternCanvas';
 
+
 // ░░ Tool Panel Names ░░
 const TOOL_LABELS: Record<string, string> = {
   'dither-ascii': 'Dither / ASCII',
@@ -33,12 +34,27 @@ const TOOL_SIZES: Record<string, { width: number; height: number }> = {
 };
 const DEFAULT_TOOL_SIZE = { width: 400, height: 350 };
 
-export default function GridPlayground() {
-  const [showSettings, setShowSettings] = useState(false);
-  const [panelPos] = useState({ x: -9999, y: -9999 });
-  const [panelSize] = useState({ width: 0, height: 0 });
-  const [pulses, setPulses] = useState<PulseEvent[]>([]);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+type WallpaperMode = "cover" | "tile";
+
+interface GridPlaygroundProps {
+  wallpaper: string;
+  wallpaperMode: WallpaperMode;
+  setWallpaper: (value: string) => void;
+  setWallpaperMode: (mode: WallpaperMode) => void;
+}
+
+export default function GridPlayground({
+  wallpaper,
+  wallpaperMode,
+  setWallpaper,
+  setWallpaperMode,
+}: GridPlaygroundProps) {
+	const hasWallpaper = wallpaper.trim().length > 0;
+	const [showSettings, setShowSettings] = useState(false);
+	const [panelPos] = useState({ x: -9999, y: -9999 });
+	const [panelSize] = useState({ width: 0, height: 0 });
+	const [pulses, setPulses] = useState<PulseEvent[]>([]);
+	const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
 
   const { panels: floatingPanels, setPanels: setFloatingPanels, connections, setConnections, panelIdCounter: savedPanelIdCounter, setPanelIdCounter: setSavedPanelIdCounter, config, setConfig, isLoaded: persistenceLoaded, clearAllData, exportToFile, importFromFile } = usePanelPersistence();
 
@@ -433,32 +449,40 @@ const effectiveConfig = useMemo(() => {
 }, [config, floatingPanels]);
 
 
-  return (
-			<div
-			style={{ minHeight: '100vh', color: 'var(--gp-text)', position: 'relative', backgroundColor: config.backgroundColor }}
-			onMouseDown={(e) => {
-			if (e.button === 1) {
-			// Middle mouse: spawn panel
-			handleMiddleClick(e); }
-			else {
-			// Left (and others): slicer / normal behavior
-			handleMouseDown(e); } }}
-			onMouseUp={handleMouseUp}
-			onMouseMove={handleMouseMove}
-			onMouseLeave={handleMouseLeave}
-			// You can drop this now, since we handle middle in onMouseDown:
-			// onAuxClick={handleMiddleClick}
-			onDrop={handleDrop}
-			onDragOver={handleDragOver}
-			>
-      {/* ░░ Visual Overlays ░░ */}
+return (
+  <div
+    onMouseDown={(e) => {
+      if (e.button === 1) {
+        // Middle mouse: spawn panel
+        handleMiddleClick(e);
+      } else {
+        // Left (and others): slicer / normal behavior
+        handleMouseDown(e);
+      }
+    }}
+    onMouseUp={handleMouseUp}
+    onMouseMove={handleMouseMove}
+    onMouseLeave={handleMouseLeave}
+    onDrop={handleDrop}
+    onDragOver={handleDragOver}
+    className="relative w-full h-full"
+  >
+    {/* Background layer driven by Settings background color when no wallpaper */}
+    <div
+      className="pointer-events-none fixed inset-0 -z-10"
+      style={{
+        backgroundColor: hasWallpaper ? "transparent" : config.backgroundColor,
+      }}
+    />
+	
+{/* ░░ Visual Overlays ░░ */}
 	{/* <NoiseOverlay /> */}  
       <EffectsOverlay type={config.overlayType} opacity={config.overlayOpacity} /> 
 
       {/* ░░ Dot Pattern Background ░░ */}
-      {config.backgroundType === 'dotpattern' && (
+/*       {config.backgroundType === 'dotpattern' && (
         <DotPatternCanvas config={config} panels={floatingPanels.filter(p => !p.isExiting)} />
-      )}
+      )} */
 
       {/* ░░ Draggable Toolbar ░░ */}
       <Toolbar onToolLaunch={handleToolLaunch} openToolIds={openToolIds} />
@@ -481,9 +505,24 @@ const effectiveConfig = useMemo(() => {
       </button>
 
       <AnimatePresence>
-        {showSettings && (
-          <SettingsPanel config={config} onConfigChange={setConfig} onReset={() => setConfig(DEFAULT_CONFIG)} onClose={() => setShowSettings(false)} onSaveToFile={exportToFile} onLoadFromFile={importFromFile} />
-        )}
+{showSettings && (
+      <SettingsPanel
+        config={config}
+        onConfigChange={setConfig}
+        onReset={() => {
+          setConfig(DEFAULT_CONFIG);
+          setCanvasResetKey((k) => k + 1);
+        }}
+        onClose={() => setShowSettings(false)}
+        onSaveToFile={exportToFile}
+        onLoadFromFile={importFromFile}
+        wallpaper={wallpaper}
+        wallpaperMode={wallpaperMode}
+        onWallpaperChange={setWallpaper}
+        onWallpaperModeChange={setWallpaperMode}
+      />
+    )}
+
       </AnimatePresence>
 
       {/* ░░ Dot Grid Canvas ░░ */}
